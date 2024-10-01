@@ -291,7 +291,7 @@ function saveTaskChanges(taskId) {
     status: document.getElementById('edit-select-status').value,
     board: activeBoard,
     id: taskId
-  }
+  } 
 
   // Create an object with the updated task details
   const updatedTask = {

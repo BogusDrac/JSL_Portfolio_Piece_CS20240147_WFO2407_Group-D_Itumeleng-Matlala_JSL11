@@ -1,8 +1,8 @@
 // TASK: import helper functions from utils
+import { getTasks, createNewTask, patchTask, putTask, deleteTask } from "./utils/taskFunctions.js";
 // TASK: import initialData
-import { initialData } from "./initialData";
+import { initialData } from "./initialData.js";
 
-console.log(initialData)
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
@@ -17,9 +17,20 @@ function initializeData() {
   }
 }
 
+
 // TASK: Get elements from the DOM
 const elements = {
-
+  themeSwitch: document.getElementById('switch'),
+  hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
+  showSideBarBtn: document.getElementById('show-side-bar-btn'),
+  headerBoardName: document.getElementById('header-board-name'),
+  editBoardBtn: document.getElementById('edit-board-btn'),
+  deleteBoardBtn: document.getElementById('delete-board-btn'),
+  columnDivs: document.querySelectorAll('.column-div'),
+  createNewTaskBtn: document.getElementById('add-new-task-btn'),
+  editTaskModal: document.querySelector('.edit-task-modal-window'),
+  modalWindow: document.getElementById('new-task-modal-window'),
+  filterDiv: document.getElementById('filterDiv')
 }
 
 let activeBoard = ""
@@ -66,7 +77,7 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter(task => task.board = boardName);
+  const filteredTasks = tasks.filter(task => task.board === boardName);// error = assign instead of strict comparison
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -79,6 +90,7 @@ function filterAndDisplayTasksByBoard(boardName) {
                         </div>`;
 
     const tasksContainer = document.createElement("div");
+    tasksContainer.className = 'tasks-container'; // added class name
     column.appendChild(tasksContainer);
 
     filteredTasks.filter(task => task.status === status).forEach(task => { 
@@ -198,7 +210,7 @@ function addTask(event) {
 
   //Assign user input to the task object
     const task = {
-      
+            
     };
     const newTask = createNewTask(task);
     if (newTask) {
@@ -212,24 +224,24 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- 
+  
 }
 
 function toggleTheme() {
- 
+  
 }
 
 
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  
+
 
   // Get button elements from the task modal
 
 
   // Call saveTaskChanges upon click of Save Changes button
- 
+
 
   // Delete task using a helper function and close the task modal
 
@@ -239,18 +251,19 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-  
 
   // Create an object with the updated task details
-
+ 
 
   // Update task using a hlper functoin
  
 
   // Close the modal and refresh the UI to reflect the changes
-
+  
   refreshTasksUI();
 }
+
+
 
 /*************************************************************************************************************************************************/
 

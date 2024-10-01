@@ -270,18 +270,23 @@ function openEditTaskModal(task) {
 
   // Delete task using a helper function and close the task modal
   deleteTaskBtn.onclick = () => {
-    // delete the task with the specified id
-    deleteTask(task.id);
-    // close the edit task modal
-    toggleModal(false, elements.editTaskModal);
-    // hide the filterDiv element
-    elements.filterDiv.style.display = 'none';
-    // refresh the tasks ui to reflect the changes
-    refreshTasksUI()
-  }
+    // confirmation step before deleting the task , confirm funtion
+    const confirmation = confirm("Are you sure you want to delete this task?");
+    if (confirmation) {
+      // Delete the task with the specified id
+      deleteTask(task.id);
+      // Close the edit task modal
+      toggleModal(false, elements.editTaskModal);
+      // Hide the filterDiv element
+      elements.filterDiv.style.display = 'none';
+      // Refresh the tasks UI to reflect the changes
+      refreshTasksUI();
+    }
+  };
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
+
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
@@ -310,6 +315,8 @@ function saveTaskChanges(taskId) {
   elements.filterDiv.style.display = 'none'
   refreshTasksUI();
 }
+
+
 
 
 

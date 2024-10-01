@@ -210,7 +210,11 @@ function addTask(event) {
 
   //Assign user input to the task object
     const task = {
-            
+      title: document.getElementById('title-input').value,
+      description: document.getElementById('desc-input').value,
+      status: document.getElementById('select-status').value,
+      board: activeBoard,
+      id: new Date().getTime() 
     };
     const newTask = createNewTask(task);
     if (newTask) {
@@ -224,11 +228,29 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
-  
+  const sideBar = document.getElementById('side-bar-div');
+  const showSideBarBtn = document.getElementById('show-side-bar-btn');
+  // check if sidebar should be shown
+  if (show) {
+    // if true,display sidebar
+    sideBar.style.display = 'block';
+    // hide the button
+    showSideBarBtn.style.display = 'none';
+  }else {
+    // if false, hide the sidebar
+    sideBar.style.display = 'none';
+    // display the button
+    showSideBarBtn.style.display = 'block';
+  }
+  localStorage.setItem('showSideBar', show)
 }
 
 function toggleTheme() {
-  
+  // toggle the light-theme class on the body element
+  const isLightTheme = document.body.classList.toggle('light-theme');
+  // save the current theme state in local storage
+  //if 'light-theme' class is present, save 'enabled', else 'disabled'
+  localStorage.setItem('light-theme', isLightTheme ? 'enabled' : 'disabled');
 }
 
 

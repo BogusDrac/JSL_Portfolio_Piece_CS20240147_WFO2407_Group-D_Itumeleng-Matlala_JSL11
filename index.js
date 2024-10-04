@@ -1,5 +1,5 @@
 // TASK: import helper functions from utils
-import { getTasks, createNewTask, patchTask, putTask, deleteTask } from "./utils/taskFunctions.js";
+import { getTasks, createNewTask, patchTask, deleteTask } from "./utils/taskFunctions.js";
 // TASK: import initialData
 import { initialData } from "./initialData.js";
 
@@ -43,7 +43,7 @@ function fetchAndDisplayBoardsAndTasks() {
   displayBoards(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
-    activeBoard = localStorageBoard ? localStorageBoard :  boards[0]; // error ; instead of : (else) iterator
+    activeBoard = localStorageBoard ? localStorageBoard :  boards[0]; // error ; instead of : (else) ternary operator
 
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard)
@@ -198,7 +198,7 @@ function setupEventListeners() {
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' : 'none'; // error => instead of : (else)
+  modal.style.display = show ? 'block' : 'none'; // error => instead of : (else) tenary operator
 }
 
 /*************************************************************************************************************************************************
@@ -225,6 +225,7 @@ function addTask(event) {
       refreshTasksUI();
     }
 }
+
 
 
 function toggleSidebar(show) {
@@ -327,6 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function init() {
+  /* addStyles(); */
   setupEventListeners();
   const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
